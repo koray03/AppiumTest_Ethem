@@ -1,9 +1,12 @@
 package com.MyAppium.test;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -31,6 +34,19 @@ public class CalculatorTest {
         AppiumDriver<MobileElement> driver = new AppiumDriver<>(url, caps);
 
         Thread.sleep(5000);
+
+        MobileElement digit9 = driver.findElement(By.id("com.google.android.calculator:id/digit_9"));
+
+        digit9.click();
+        Thread.sleep(1000);
+
+        MobileElement clearScreen = driver.findElement(MobileBy.AccessibilityId("clear"));
+
+        System.out.println(clearScreen.getText());
+
+        Assertions.assertTrue(clearScreen.isDisplayed());
+
+        clearScreen.click();
 
         driver.closeApp();
 
